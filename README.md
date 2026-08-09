@@ -191,8 +191,30 @@ streamlit run app.py
 
 # Author
 
-**Yuwaraj T K**
+**Name:** Yuwaraj T K
 
-M.Tech Artificial Intelligence & Machine Learning
+**BITS ID:** 2025AC05829
 
-BITS Pilani – Work Integrated Learning Programme
+**Email:** 2025ac05829@wilp.bits-pilani.ac.in
+
+**Programme:** M.Tech Artificial Intelligence & Machine Learning
+
+**University:** BITS Pilani – Work Integrated Learning Programme
+
+
+# Application Screenshots
+
+## 1. Model Prediction in ipynb 
+![Image-1](image.png)
+
+## 2. Best Model
+![Image-2](image-1.png)
+
+## 3. Localhost Streamlit app
+![Image-3](image-2.png)
+
+## 4. Streamlit app Running in terminal
+![Image-4](image-3.png)
+
+## 5. Hosted Streamlit app
+![Image-5](image-4.png)
