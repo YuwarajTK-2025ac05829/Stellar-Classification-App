@@ -42,22 +42,24 @@ https://www.kaggle.com/datasets/fedesoriano/stellar-classification-dataset-sdss1
 
 ## Input Features
 
-| No | Feature |
-|----|---------|
-|1|alpha|
-|2|delta|
-|3|u|
-|4|g|
-|5|r|
-|6|i|
-|7|z|
-|8|run_ID|
-|9|cam_col|
-|10|field_ID|
-|11|redshift|
-|12|plate|
-|13|MJD|
-|14|fiber_ID|
+## Input Features
+
+| No | Feature | Description |
+|----|---------|-------------|
+| 1 | **alpha** | Right Ascension (RA) angle of the celestial object measured at the J2000 epoch. It represents the object's angular position in the sky, similar to longitude on Earth. |
+| 2 | **delta** | Declination (DEC) angle of the celestial object measured at the J2000 epoch. It represents the object's angular position in the sky, similar to latitude on Earth. |
+| 3 | **u** | Brightness (magnitude) measured through the Ultraviolet (U) photometric filter. |
+| 4 | **g** | Brightness (magnitude) measured through the Green (G) photometric filter. |
+| 5 | **r** | Brightness (magnitude) measured through the Red (R) photometric filter. |
+| 6 | **i** | Brightness (magnitude) measured through the Near-Infrared (I) photometric filter. |
+| 7 | **z** | Brightness (magnitude) measured through the Infrared (Z) photometric filter. |
+| 8 | **run_ID** | Identifier of the SDSS observation run in which the celestial object was captured. |
+| 9 | **cam_col** | Camera column number that identifies the specific camera sensor used during the sky survey. |
+| 10 | **field_ID** | Identifier of the observed field within an SDSS imaging run. |
+| 11 | **redshift** | Redshift value indicating how much the wavelength of the object's light has shifted due to the expansion of the universe. It is an important feature for distinguishing galaxies, stars, and quasars. |
+| 12 | **plate** | Spectroscopic plate identifier used during the SDSS spectroscopic observation. |
+| 13 | **MJD** | Modified Julian Date representing the date and time when the observation was recorded. |
+| 14 | **fiber_ID** | Identifier of the optical fiber used to collect light from the celestial object during spectroscopic observation. |
 
 ## Target Classes
 
