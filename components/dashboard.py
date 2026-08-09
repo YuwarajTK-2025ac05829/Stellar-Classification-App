@@ -1,26 +1,10 @@
 import streamlit as st
 
 
-def render_dashboard(selected_model):
+def render_dashboard(selected_models):
     """
     Display project title and dashboard metrics.
     """
-
-    st.title("🌌 Stellar Classification using Machine Learning")
-
-    st.markdown("---")
-
-    st.write(
-        """
-        This application predicts whether a celestial object is a
-
-        - 🌌 GALAXY
-        - ⭐ STAR
-        - ✨ QSO
-
-        using supervised Machine Learning models.
-        """
-    )
 
     c1, c2, c3, c4 = st.columns(4)
 
@@ -40,6 +24,11 @@ def render_dashboard(selected_model):
     
     c2.metric("Features", "14")
     c3.metric("Classes", "3")
-    c4.metric("Model", selected_model)
+    if len(selected_models) == 1:
+        model_name = selected_models[0]
+    else:
+        model_name = f"{len(selected_models)} Models"
+
+    c4.metric("Selected", model_name)
 
     st.markdown("---")

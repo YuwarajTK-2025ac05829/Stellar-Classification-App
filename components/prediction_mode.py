@@ -5,7 +5,6 @@
 import streamlit as st
 import pandas as pd
 
-
 # ==========================================================
 # Prediction Mode
 # ==========================================================
@@ -24,9 +23,10 @@ def render_prediction_mode():
         (
             "📂 Upload Test Dataset",
             "📁 Use Default Test Dataset",
-            "✍ Manual Input"
+            # "✍ Manual Input"
         ),
-        horizontal=True
+        horizontal=True,
+        key="prediction_mode"
     )
 
     df = None
@@ -39,12 +39,15 @@ def render_prediction_mode():
 
         uploaded_file = st.file_uploader(
             "Upload test_data.csv",
-            type=["csv"]
+            type=["csv"],
+            key="uploaded_dataset"
         )
 
         if uploaded_file is not None:
 
             df = pd.read_csv(uploaded_file)
+
+            st.session_state["input_df"] = df
 
             st.success("Dataset uploaded successfully!")
 
@@ -54,7 +57,10 @@ def render_prediction_mode():
 
     elif prediction_mode == "📁 Use Default Test Dataset":
 
-        df = pd.read_csv("test_data.csv")
+        if "input_df" not in st.session_state:
+            st.session_state["input_df"] = pd.read_csv("test_data.csv")
+
+        df = st.session_state["input_df"]
 
         st.success("Default test dataset loaded successfully!")
 
@@ -90,22 +96,30 @@ def render_prediction_mode():
         for i, feature in enumerate(feature_names):
 
             if i % 2 == 0:
+
                 manual_data[feature] = col1.number_input(
                     feature,
                     value=0.0,
-                    format="%.6f"
+                    format="%.6f",
+                    key=f"manual_{feature}"
                 )
+
             else:
+
                 manual_data[feature] = col2.number_input(
                     feature,
                     value=0.0,
-                    format="%.6f"
+                    format="%.6f",
+                    key=f"manual_{feature}"
                 )
 
         if st.button("Create Sample", type="primary"):
 
-            df = pd.DataFrame([manual_data])
+            st.session_state["input_df"] = pd.DataFrame([manual_data])
 
             st.success("Sample created successfully!")
 
-    return df
+        if "input_df" in st.session_state:
+            df = st.session_state["input_df"]
+
+    return df, prediction_mode

@@ -30,6 +30,10 @@ def evaluate_model(model, X_test, y_test, predictions):
 
     metrics = {}
 
+    # ------------------------------------------------------
+    # Basic Metrics
+    # ------------------------------------------------------
+
     metrics["accuracy"] = accuracy_score(
         y_test,
         predictions
@@ -59,7 +63,7 @@ def evaluate_model(model, X_test, y_test, predictions):
     )
 
     # ------------------------------------------------------
-    # AUC
+    # Multi-class AUC
     # ------------------------------------------------------
 
     try:
@@ -77,15 +81,31 @@ def evaluate_model(model, X_test, y_test, predictions):
         metrics["auc"] = None
 
     # ------------------------------------------------------
+    # Confusion Matrix
+    # ------------------------------------------------------
 
     metrics["confusion_matrix"] = confusion_matrix(
         y_test,
         predictions
     )
 
+    # ------------------------------------------------------
+    # Classification Report (Text)
+    # ------------------------------------------------------
+
     metrics["classification_report"] = classification_report(
         y_test,
         predictions
+    )
+
+    # ------------------------------------------------------
+    # Classification Report (Dictionary)
+    # ------------------------------------------------------
+
+    metrics["report_dict"] = classification_report(
+        y_test,
+        predictions,
+        output_dict=True
     )
 
     return metrics
