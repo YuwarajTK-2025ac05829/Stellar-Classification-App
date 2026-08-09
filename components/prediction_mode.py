@@ -57,10 +57,9 @@ def render_prediction_mode():
 
     elif prediction_mode == "📁 Use Default Test Dataset":
 
-        if "input_df" not in st.session_state:
-            st.session_state["input_df"] = pd.read_csv("test_data.csv")
+        df = pd.read_csv("test_data.csv")
 
-        df = st.session_state["input_df"]
+        st.session_state["input_df"] = df
 
         st.success("Default test dataset loaded successfully!")
 

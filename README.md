@@ -18,7 +18,6 @@ The project utilizes the **SDSS Stellar Classification Dataset** and compares th
 - Gaussian Naive Bayes
 - Random Forest (Ensemble)
 
-The best-performing model is integrated into a **Streamlit web application**, allowing users to upload a dataset, manually enter feature values, perform predictions, evaluate model performance, and download prediction results.
 
 ---
 
@@ -114,6 +113,9 @@ Stellar-Classification-App/
 ├── requirements.txt
 ├── test_data.csv
 │
+├── dataset/
+│   └── star_classification.csv
+│
 ├── models/
 │   ├── logistic_regression.pkl
 │   ├── decision_tree.pkl
@@ -121,23 +123,28 @@ Stellar-Classification-App/
 │   ├── gaussian_nb.pkl
 │   ├── random_forest.pkl
 │   ├── scaler.pkl
-│   └── label_encoder.pkl
+│   ├── label_encoder.pkl
+│   └── Stellar-Classification-App.ipynb
 │
 ├── components/
-│   ├── sidebar.py
-│   ├── dashboard.py
-│   ├── prediction_mode.py
-│   ├── dataset_preview.py
-│   ├── prediction.py
-│   ├── metrics.py
-│   ├── confusion_matrix.py
+│   ├── __init__.py
 │   ├── classification_report.py
+│   ├── confusion_matrix.py
+│   ├── dashboard.py
+│   ├── dataset_preview.py
+│   ├── download.py
 │   ├── feature_importance.py
-│   └── download.py
+│   ├── metrics.py
+│   ├── model_comparison.py
+│   ├── model_inspector.py
+│   ├── model_selection.py
+│   ├── prediction.py
+│   └── prediction_mode.py
 │
 └── utils/
-    ├── model_loader.py
-    └── evaluation.py
+    ├── __init__.py
+    ├── evaluation.py
+    └── model_loader.py
 ```
 
 ---

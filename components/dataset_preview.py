@@ -3,14 +3,13 @@
 # ==========================================================
 
 import streamlit as st
-
+import pandas as pd
 
 # ==========================================================
 # Dataset Preview
 # ==========================================================
 
 def render_dataset_preview(df):
-
     """
     Display dataset preview and dataset information.
 
@@ -66,17 +65,82 @@ def render_dataset_preview(df):
         col4.metric("Target", "Not Available")
 
     # ======================================================
-    # Missing Values
+    # Dataset Validation
     # ======================================================
 
-    missing_values = df.isnull().sum().sum()
+    required_columns = [
+        "alpha",
+        "delta",
+        "u",
+        "g",
+        "r",
+        "i",
+        "z",
+        "run_ID",
+        "cam_col",
+        "field_ID",
+        "redshift",
+        "plate",
+        "MJD",
+        "fiber_ID"
+    ]
 
-    if missing_values == 0:
+    uploaded_columns = list(X_test.columns)
 
-        st.success("✅ No missing values detected.")
+    missing_columns = [
+        col for col in required_columns
+        if col not in uploaded_columns
+    ]
 
+    extra_columns = [
+        col for col in uploaded_columns
+        if col not in required_columns
+    ]
+
+    missing_values = X_test.isnull().sum().sum()
+
+    # Wrong dataset
+    if missing_columns or extra_columns:
+
+        st.error("❌ Invalid dataset format detected.")
+
+        if missing_columns:
+            st.write(
+                "**Missing Columns:** " +
+                ", ".join(missing_columns)
+            )
+
+        if extra_columns:
+            st.write(
+                "**Unexpected Columns:** " +
+                ", ".join(extra_columns)
+            )
+
+        st.write("### Expected Dataset Structure")
+
+        sample_df = pd.DataFrame(columns=required_columns)
+
+        st.dataframe(
+            sample_df,
+            width="stretch",
+            hide_index=True
+        )
+
+        # Stop here
+        return None, None
+
+    # Missing values
+    elif missing_values > 0:
+
+        st.warning(
+            f"⚠️ Dataset contains {missing_values} missing value(s)."
+        )
+
+    # Everything is valid
     else:
 
-        st.warning(f"⚠️ Missing Values : {missing_values}")
+        st.success(
+            "✅ Dataset format is valid. No missing values detected."
+        )
 
     return X_test, y_test

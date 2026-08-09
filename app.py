@@ -93,6 +93,9 @@ if df is None:
 
 X_test, y_test = render_dataset_preview(df)
 
+if X_test is None:
+    st.stop()
+
 # ==========================================================
 # Prediction
 # ==========================================================
